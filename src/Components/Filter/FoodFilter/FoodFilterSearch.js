@@ -1,14 +1,26 @@
-import React, { useState } from 'react'
+// FoodFilterSearch.js
+import React from 'react';
+import { useFilter, FilterProvider } from './FilterContext';
 
 const FoodFilterSearch = () => {
-    const [minimumVal, setMinimumVal] = useState(``);
-    const [maximumVal, setMaximumVal] = useState(``);
-    return (
-        <div>
-            <input type='number' placeholder='Minimum' onChange={(e) => { setMinimumVal(e.target.value) }} />
-            <input type='number' placeholder='Maximum' onChange={(e) => { setMaximumVal(e.target.value) }} />
-        </div>
-    )
-}
+  const { minimumVal, setMinimumVal, maximumVal, setMaximumVal } = useFilter();
 
-export default FoodFilterSearch
+  return (
+    <div>
+      <input
+        type='number'
+        placeholder='Minimum'
+        value={minimumVal}
+        onChange={(e) => setMinimumVal(e.target.value)}
+      />
+      <input
+        type='number'
+        placeholder='Maximum'
+        value={maximumVal}
+        onChange={(e) => setMaximumVal(e.target.value)}
+      />
+    </div>
+  );
+};
+
+export default FoodFilterSearch;

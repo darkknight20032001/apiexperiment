@@ -5,14 +5,18 @@ import Food from './Food/Food';
 import OffsetFilter from './Filter/OffsetFilter';
 import OffsetContext from './OffsetContext';
 import FoodFilter from './Filter/FoodFilter/FoodFilter';
+import { useFilter } from './Filter/FoodFilter/FilterContext';
 
 const HomePage = () => {
+    const { minimumVal, maximumVal } = useFilter();
+    console.log(minimumVal, maximumVal);
     const apiKey = useContext(ApiContext);
     const [offset, setOffset] = useState(0);
     const [receipeData, setReceipeData] = useState([]);
     console.log(apiKey);
 
     const fetchData = async () => {
+        
         const data = await axios.get('https://api.spoonacular.com/recipes/findByNutrients?apiKey=' + apiKey + '&number=5&offset=' + offset + '&minCarbs=10');
         console.log("The answer is ", data);
         setReceipeData(data?.data);
