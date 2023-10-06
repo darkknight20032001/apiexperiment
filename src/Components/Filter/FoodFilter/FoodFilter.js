@@ -12,7 +12,7 @@ const FoodFilter = () => {
 
 
             <div className="filterItem">
-                {Object.keys(filterDb).map((item) => {
+                {Object.values(filterDb).map((item) => {
 
                     return <FoodFilterCard item={item} />
 

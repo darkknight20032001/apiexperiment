@@ -10,14 +10,28 @@ import { useFilter } from './Filter/FoodFilter/FilterContext';
 const HomePage = () => {
     const { minimumVal, maximumVal } = useFilter();
     console.log(minimumVal, maximumVal);
+    const arrData = sessionStorage.getItem('filteredFood') !== null && JSON.parse(sessionStorage.getItem('filteredFood'));
+    let nutrients = arrData[0];
+    console.log(nutrients)
+    let minCheck = ``;
+    let maxCheck = ``;
+    minCheck = minimumVal !== `` && `min`;
+    maxCheck = maximumVal !== `` && `max`;
     const apiKey = useContext(ApiContext);
     const [offset, setOffset] = useState(0);
     const [receipeData, setReceipeData] = useState([]);
     console.log(apiKey);
-
+    const urlGetter = () => {
+        let url = 'https://api.spoonacular.com/recipes/findByNutrients?apiKey=' + apiKey + '&number=5&offset=' + offset + '&minCarbs=10';
+        if (minCheck !== `` && maxCheck !== ``) {
+            url = 'https://api.spoonacular.com/recipes/findByNutrients?apiKey=' + apiKey + '&number=5&offset=' + offset + '&' + minCheck + nutrients + '=' + minimumVal + '&' + maxCheck + nutrients + '=' + maximumVal;
+        }
+        return url;
+    }
     const fetchData = async () => {
-        
-        const data = await axios.get('https://api.spoonacular.com/recipes/findByNutrients?apiKey=' + apiKey + '&number=5&offset=' + offset + '&minCarbs=10');
+
+        const getUrl = urlGetter();
+        const data = await axios.get(getUrl);
         console.log("The answer is ", data);
         setReceipeData(data?.data);
     }
