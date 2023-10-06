@@ -1,0 +1,7 @@
+.filterItem{
+    display: flex;
+    justify-content: space-evenly;
+}
+.FilterSearch{
+    text-align: center;
+}
