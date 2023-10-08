@@ -3,7 +3,7 @@ import { filterDb } from './FilterDb'
 import FoodFilterCard from './FoodFilterCard';
 import './FoodFilter.css'
 import FoodFilterSearch from './FoodFilterSearch';
-const FoodFilter = () => {
+const FoodFilter = ( {nutrients , receipeData , setReceipeData}) => {
     console.log(filterDb);
     return (
         <div>
@@ -18,7 +18,7 @@ const FoodFilter = () => {
 
                 })}
             </div>
-            <div className='FilterSearch'><FoodFilterSearch /></div>
+            <div className='FilterSearch'><FoodFilterSearch  nutrients={nutrients} receipeData={receipeData} setReceipeData={setReceipeData} /></div>
 
         </div>
     )

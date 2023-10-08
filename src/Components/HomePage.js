@@ -13,19 +13,14 @@ const HomePage = () => {
     const arrData = sessionStorage.getItem('filteredFood') !== null && JSON.parse(sessionStorage.getItem('filteredFood'));
     let nutrients = arrData[0];
     console.log(nutrients)
-    let minCheck = ``;
-    let maxCheck = ``;
-    minCheck = minimumVal !== `` && `min`;
-    maxCheck = maximumVal !== `` && `max`;
+
     const apiKey = useContext(ApiContext);
     const [offset, setOffset] = useState(0);
     const [receipeData, setReceipeData] = useState([]);
     console.log(apiKey);
     const urlGetter = () => {
-        let url = 'https://api.spoonacular.com/recipes/findByNutrients?apiKey=' + apiKey + '&number=5&offset=' + offset + '&minCarbs=10';
-        if (minCheck !== `` && maxCheck !== ``) {
-            // url = 'https://api.spoonacular.com/recipes/findByNutrients?apiKey=' + apiKey + '&number=5&offset=' + offset + '&' + minCheck + nutrients + '=' + minimumVal + '&' + maxCheck + nutrients + '=' + maximumVal;
-        }
+        let url = 'https://api.spoonacular.com/recipes/findByNutrients?apiKey=' + apiKey + '&number=5&offset=' + offset + '&minCarbs=0';
+
         return url;
     }
     const fetchData = async () => {
@@ -40,7 +35,9 @@ const HomePage = () => {
         <div>
             <h1>HomePage</h1>
 
-            <FoodFilter />
+            {receipeData.length > 0 &&
+                <FoodFilter nutrients={nutrients} receipeData={receipeData} setReceipeData={setReceipeData} />
+            }
             {receipeData.length > 0 && receipeData.map((foodItem) => { return <Food key={foodItem.id} foodItem={foodItem} /> })}
             <OffsetContext.Provider value={{ offset, setOffset }} >
                 <OffsetFilter />

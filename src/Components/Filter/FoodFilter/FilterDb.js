@@ -1,7 +1,7 @@
 const filterDb = {
-    fat: 'Fat',
-    protein: 'Protein',
-    carbs: 'Carbs',
-    calories: 'Calories'
+    fat: 'fat',
+    protein: 'protein',
+    carbs: 'carbs',
+    calories: 'calories'
 }
 export {filterDb} 
