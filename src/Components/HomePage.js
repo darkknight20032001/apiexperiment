@@ -24,7 +24,7 @@ const HomePage = () => {
     const urlGetter = () => {
         let url = 'https://api.spoonacular.com/recipes/findByNutrients?apiKey=' + apiKey + '&number=5&offset=' + offset + '&minCarbs=10';
         if (minCheck !== `` && maxCheck !== ``) {
-            url = 'https://api.spoonacular.com/recipes/findByNutrients?apiKey=' + apiKey + '&number=5&offset=' + offset + '&' + minCheck + nutrients + '=' + minimumVal + '&' + maxCheck + nutrients + '=' + maximumVal;
+            // url = 'https://api.spoonacular.com/recipes/findByNutrients?apiKey=' + apiKey + '&number=5&offset=' + offset + '&' + minCheck + nutrients + '=' + minimumVal + '&' + maxCheck + nutrients + '=' + maximumVal;
         }
         return url;
     }
