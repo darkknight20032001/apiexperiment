@@ -2,11 +2,12 @@
 import React, { useState } from 'react';
 import { useFilter, FilterProvider } from './FilterContext';
 
-const FoodFilterSearch = ({ nutrients, receipeData, setReceipeData,minimumVal,setMinimumVal,maximumVal,setMaximumVal }) => {
-const [typedMinValue,setTypedMinValue] = useState(minimumVal||'');
-const [typedMaxValue,setTypedMaxValue] = useState(maximumVal||'');
+const FoodFilterSearch = ({ nutrients, receipeData, setReceipeData, minimumVal, setMinimumVal, maximumVal, setMaximumVal }) => {
 
-const getClickedData = (e) => {
+  const [typedMinValue, setTypedMinValue] = useState(minimumVal || '');
+  const [typedMaxValue, setTypedMaxValue] = useState(maximumVal || '');
+
+  const getClickedData = (e) => {
     e.preventDefault();
     console.log(nutrients)
     if (minimumVal !== `` && maximumVal !== ``) {
@@ -26,15 +27,20 @@ const getClickedData = (e) => {
       <input
         type='number'
         placeholder='Minimum'
-        value={minimumVal}
-        onClick={() => { console.log("hello") }}
-        onChange={(e) => setMinimumVal(e.target.value)}
+        value={typedMinValue}
+        onChange={(e) => {
+          setTypedMinValue(e.target.value);
+          setMinimumVal(e.target.value)
+        }}
       />
       <input
         type='number'
         placeholder='Maximum'
-        value={maximumVal}
-        onChange={(e) => setMaximumVal(e.target.value)}
+        value={typedMaxValue}
+        onChange={(e) => {
+          setTypedMaxValue(e.target.value);
+          setMaximumVal(e.target.value);
+        }}
       />
       <button onClick={getClickedData}>Filter</button>
     </div>
