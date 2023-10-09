@@ -19,7 +19,7 @@ const HomePage = () => {
     const [receipeData, setReceipeData] = useState([]);
     console.log(apiKey);
     const urlGetter = () => {
-        let url = 'https://api.spoonacular.com/recipes/findByNutrients?apiKey=' + apiKey + '&number=5&offset=' + offset + '&minCarbs=0';
+        let url = 'https://api.spoonacular.com/recipes/findByNutrients?apiKey=' + apiKey + '&number=30&offset=' + offset + '&minCarbs=0';
 
         return url;
     }
