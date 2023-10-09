@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './FoodFilterCard.css'
 import FoodFilterSearch from './FoodFilterSearch';
-const FoodFilterCard = ({ item,nutrients,receipeData,setReceipeData }) => {
+const FoodFilterCard = ({ item }) => {
     const filteredFood = sessionStorage.getItem('filteredFood') !== null && JSON.parse(sessionStorage.getItem('filteredFood')).filter((foodItem) => { return (item === foodItem) });
     const status = filteredFood.length > 0 ? true : false;
     const [selectedFood, setSelectedFood] = useState(status);
@@ -44,7 +44,6 @@ const FoodFilterCard = ({ item,nutrients,receipeData,setReceipeData }) => {
             <h4 className={selectedFood ? `selected` : 'ItemList'} onClick={foodClicked}>
                 {item}
             </h4>
-            <FoodFilterSearch nutrients={nutrients} receipeData={receipeData} setReceipeData={setReceipeData} />
         </div>
 
 

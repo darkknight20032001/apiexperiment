@@ -1,17 +1,13 @@
 // FoodFilterSearch.js
-import React from 'react';
+import React, { useState } from 'react';
 import { useFilter, FilterProvider } from './FilterContext';
 
-const FoodFilterSearch = ({ nutrients, receipeData, setReceipeData }) => {
-  let { minimumVal, setMinimumVal, maximumVal, setMaximumVal } = useFilter();
+const FoodFilterSearch = ({ nutrients, receipeData, setReceipeData,minimumVal,setMinimumVal,maximumVal,setMaximumVal }) => {
+const [typedMinValue,setTypedMinValue] = useState(minimumVal||'');
+const [typedMaxValue,setTypedMaxValue] = useState(maximumVal||'');
 
-  const getClickedData = (e) => {
+const getClickedData = (e) => {
     e.preventDefault();
-    // const filteredData = receipeData.filter((item)=>{
-
-    // })
-
-    // console.log("The answer is" , receipeData)
     console.log(nutrients)
     if (minimumVal !== `` && maximumVal !== ``) {
       minimumVal = Number(minimumVal);
@@ -23,7 +19,6 @@ const FoodFilterSearch = ({ nutrients, receipeData, setReceipeData }) => {
         return (itemFat > minimumVal && itemFat < maximumVal);
       });
       console.log(filteredData);
-
     }
   }
   return (
@@ -32,6 +27,7 @@ const FoodFilterSearch = ({ nutrients, receipeData, setReceipeData }) => {
         type='number'
         placeholder='Minimum'
         value={minimumVal}
+        onClick={() => { console.log("hello") }}
         onChange={(e) => setMinimumVal(e.target.value)}
       />
       <input
