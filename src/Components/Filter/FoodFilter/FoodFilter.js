@@ -2,8 +2,8 @@ import React from 'react'
 import { filterDb } from './FilterDb'
 import FoodFilterCard from './FoodFilterCard';
 import './FoodFilter.css'
-import FoodFilterSearch from './FoodFilterSearch';
-const FoodFilter = ( {nutrients , receipeData , setReceipeData}) => {
+
+const FoodFilter = ({ nutrients, receipeData, setReceipeData }) => {
     console.log(filterDb);
     return (
         <div>
@@ -14,13 +14,12 @@ const FoodFilter = ( {nutrients , receipeData , setReceipeData}) => {
             <div className="filterItem">
                 {Object.values(filterDb).map((item) => {
 
-                    return <FoodFilterCard item={item} />
+                    return <FoodFilterCard item={item} nutrients={nutrients} receipeData={receipeData} setReceipeData={setReceipeData} />
 
                 })}
             </div>
-            <div className='FilterSearch'><FoodFilterSearch  nutrients={nutrients} receipeData={receipeData} setReceipeData={setReceipeData} /></div>
-
         </div>
+
     )
 }
 
